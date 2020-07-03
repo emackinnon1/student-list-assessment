@@ -17,7 +17,9 @@ const StudentsList = ({ list }) => {
 	}, [searchName]);
 
 	const searchStudents = (searchTerm) => {
-		const result = students.filter((student) => {
+		console.log(searchTerm);
+		console.log(students);
+		const result = list.students.filter((student) => {
 			const fullName = `${student.firstName} ${student.lastName}`;
 			if (fullName.toLowerCase().includes(searchTerm.toLowerCase())) {
 				return student;
