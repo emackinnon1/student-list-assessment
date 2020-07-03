@@ -38,15 +38,21 @@ const StudentsList = ({ list, addTag }) => {
 
 	const searchByTag = (searchTerm) => {
 		const result = students.filter((student) => {
-			if (student.tags.length > 0 && student.tags.includes(searchTerm)) {
-				return student;
+			if (student.tags.length > 0) {
+				const total = student.tags.reduce((acc, tag) => acc + tag);
+				if (total.includes(searchTerm)) {
+					return student;
+				}
 			}
 		});
+
 		if (result.length > 0) {
 			setStudents(result);
-			return;
 		}
-		setStudents(list.students);
+
+		if (searchTerm === "") {
+			setStudents(list.students);
+		}
 	};
 
 	return (
