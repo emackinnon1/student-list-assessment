@@ -17,8 +17,6 @@ const StudentsList = ({ list }) => {
 	}, [searchName]);
 
 	const searchStudents = (searchTerm) => {
-		console.log(searchTerm);
-		console.log(students);
 		const result = list.students.filter((student) => {
 			const fullName = `${student.firstName} ${student.lastName}`;
 			if (fullName.toLowerCase().includes(searchTerm.toLowerCase())) {
@@ -32,13 +30,13 @@ const StudentsList = ({ list }) => {
 	return (
 		<div className="student-list">
 			<input
+				id="name-input"
 				onChange={(e) => {
 					setSearchName(e.target.value);
 				}}
 				placeholder="Search by name"
 			/>
 			{makeCards(students)}
-			{/* {searchStudents(makeCards(list.students))} */}
 		</div>
 	);
 };

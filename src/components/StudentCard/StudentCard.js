@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./StudentCard.css";
 
 const StudentCard = ({
@@ -12,6 +12,7 @@ const StudentCard = ({
 	pic,
 	skill,
 }) => {
+	const [expanded, setExpanded] = useState(false);
 	const getAvgGrade = (gradeList) => {
 		const total = gradeList.reduce((acc, grade) => {
 			return acc + Number(grade);
@@ -19,6 +20,12 @@ const StudentCard = ({
 
 		return total / gradeList.length;
 	};
+
+	const allGrades = grades.map((grade, i) => (
+		<p>
+			Test {i + 1}: {grade}%
+		</p>
+	));
 
 	return (
 		<div className="student-card">
@@ -29,6 +36,10 @@ const StudentCard = ({
 				<p>Company: {company}</p>
 				<p>Skill: {skill}</p>
 				<p>Average: {getAvgGrade(grades)}%</p>
+				{expanded && allGrades}
+			</div>
+			<div onClick={() => setExpanded(!expanded)} className="expand-btn">
+				{expanded ? "-" : "+"}
 			</div>
 		</div>
 	);

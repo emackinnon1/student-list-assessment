@@ -1,7 +1,7 @@
 .student-card {
 	display: flex;
 	flex-direction: row;
-	width: inherit;
+	width: 100%;
 }
 
 .student-card img {
@@ -14,4 +14,10 @@
 .student-card p {
 	font-weight: lighter;
 	margin: 0.2em;
+}
+
+.expand-btn {
+	color: grey;
+	font-size: 3em;
+	margin-left: auto;
 }
