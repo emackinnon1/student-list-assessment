@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { getStudentData } from "../../apiCalls";
+import StudentsList from "../StudentsList/StudentsList";
 
 const App = () => {
 	const [studentList, setStudentList] = useState({});
@@ -20,13 +21,13 @@ const App = () => {
 		return () => (mounted = false);
 	}, []);
 
-	console.log(studentList.students);
-
 	return (
 		<div className="App">
-			{studentList.hasOwnProperty("students")
-				? studentList.students.toString()
-				: "Loading..."}
+			{studentList.hasOwnProperty("students") ? (
+				<StudentsList list={studentList} />
+			) : (
+				"Loading..."
+			)}
 		</div>
 	);
 };
