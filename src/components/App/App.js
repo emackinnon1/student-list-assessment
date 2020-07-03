@@ -11,9 +11,13 @@ const App = () => {
 	useEffect(() => {
 		let mounted = true;
 		const getData = async () => {
-			setStudentList(
-				await getStudentData("https://www.hatchways.io/api/assessment/students")
+			const initialList = await getStudentData(
+				"https://www.hatchways.io/api/assessment/students"
 			);
+			const updatedList = initialList.students.map((student) => {
+				return { ...student, tags: [] };
+			});
+			setStudentList({ students: updatedList });
 		};
 		if (mounted) {
 			getData();
@@ -21,10 +25,24 @@ const App = () => {
 		return () => (mounted = false);
 	}, []);
 
+	const addTag = (tag, id) => {
+		const updatedList = studentList.students.map((student) => {
+			if (id === student.id) {
+				return {
+					...student,
+					tags: [...student.tags, tag],
+				};
+			} else {
+				return student;
+			}
+		});
+		setStudentList({ students: updatedList });
+	};
+
 	return (
 		<div className="App">
 			{studentList.hasOwnProperty("students") ? (
-				<StudentsList list={studentList} />
+				<StudentsList list={studentList} addTag={addTag} />
 			) : (
 				"Loading..."
 			)}

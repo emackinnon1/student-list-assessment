@@ -11,8 +11,11 @@ const StudentCard = ({
 	lastName,
 	pic,
 	skill,
+	tags,
+	addTag,
 }) => {
 	const [expanded, setExpanded] = useState(false);
+	const [tag, setTag] = useState("");
 	const getAvgGrade = (gradeList) => {
 		const total = gradeList.reduce((acc, grade) => {
 			return acc + Number(grade);
@@ -22,9 +25,31 @@ const StudentCard = ({
 	};
 
 	const allGrades = grades.map((grade, i) => (
-		<p>
+		<p key={i}>
 			Test {i + 1}: {grade}%
 		</p>
+	));
+
+	const tagInput = (
+		<form
+			onSubmit={(e) => {
+				e.preventDefault();
+				addTag(tag, id);
+				setTag("");
+			}}>
+			<input
+				value={tag}
+				onChange={(e) => setTag(e.target.value)}
+				id="add-tag-input"
+				placeholder="Add a tag"
+			/>
+		</form>
+	);
+
+	const tagList = tags.map((tag, i) => (
+		<div className="tag" key={i}>
+			{tag}
+		</div>
 	));
 
 	return (
@@ -37,6 +62,8 @@ const StudentCard = ({
 				<p>Skill: {skill}</p>
 				<p>Average: {getAvgGrade(grades)}%</p>
 				{expanded && allGrades}
+				<div className="tag-list">{expanded && tagList}</div>
+				{expanded && tagInput}
 			</div>
 			<div onClick={() => setExpanded(!expanded)} className="expand-btn">
 				{expanded ? "-" : "+"}

@@ -26,3 +26,15 @@ input:focus {
 .expand-btn {
 	cursor: pointer;
 }
+
+.tag-list {
+	height: 2em;
+}
+
+.tag {
+	background-color: lightgrey;
+	border-radius: 5%;
+	display: inline-block;
+	padding: 0.5em;
+	margin: 0.5em;
+}
