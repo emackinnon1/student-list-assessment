@@ -1,4 +1,5 @@
 import React from "react";
+import "./StudentCard.css";
 
 const StudentCard = ({
 	city,
@@ -11,8 +12,6 @@ const StudentCard = ({
 	pic,
 	skill,
 }) => {
-	const image = pic;
-
 	const getAvgGrade = (gradeList) => {
 		const total = gradeList.reduce((acc, grade) => {
 			return acc + Number(grade);
@@ -21,16 +20,16 @@ const StudentCard = ({
 		return total / gradeList.length;
 	};
 
-	console.log(getAvgGrade(grades));
-
 	return (
 		<div className="student-card">
-			<img src={image} alt="student-avatar" />
-			<h1>{`${firstName} ${lastName}`}</h1>
-			<p>Email: {email}</p>
-			<p>Company: {company}</p>
-			<p>Skill: {skill}</p>
-			<p>Average: {getAvgGrade(grades)}%</p>
+			<img src={pic} alt="student-avatar" />
+			<div className="student-info">
+				<h1>{`${firstName.toUpperCase()} ${lastName.toUpperCase()}`}</h1>
+				<p>Email: {email}</p>
+				<p>Company: {company}</p>
+				<p>Skill: {skill}</p>
+				<p>Average: {getAvgGrade(grades)}%</p>
+			</div>
 		</div>
 	);
 };

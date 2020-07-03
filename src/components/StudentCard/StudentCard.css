@@ -1,0 +1,17 @@
+.student-card {
+	display: flex;
+	flex-direction: row;
+	width: inherit;
+}
+
+.student-card img {
+	border: 1px grey solid;
+	border-radius: 100%;
+	margin: 2em;
+	height: 8em;
+}
+
+.student-card p {
+	font-weight: lighter;
+	margin: 0.2em;
+}
